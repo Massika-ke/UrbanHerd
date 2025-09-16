@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('market_transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('buyer_id')->constrained('users');
+            $table->foreignId('seller_id')->constrained('users');
+            $table->foreignId('listing_id')->constrained('market_listings');
+            $table->foreignId('animal_id')->constrained();
+            $table->integer('shares_traded');
+            $table->decimal('price_per_share', 10, 2);
+            $table->decimal('total_price', 12, 2);
+            $table->decimal('platform_commission', 10, 2);
+            $table->decimal('seller_receives', 12, 2);
+            $table->string('transaction_reference')->unique();
+            $table->enum('status', ['pending', 'completed', 'failed', 'cancelled']);
+            $table->timestamp('completed_at')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

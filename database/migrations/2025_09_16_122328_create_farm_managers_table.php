@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('farm_managers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('farm_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
+            $table->enum('role', ['manager', 'veterinarian', 'caretaker']);
+            $table->json('permissions')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
