@@ -32,7 +32,7 @@ const isCurrentRoute = computed(() => (url: NonNullable<InertiaLinkProps['href']
 
 const activeItemStyles = computed(
     () => (url: NonNullable<InertiaLinkProps['href']>) =>
-        isCurrentRoute.value(toUrl(url)) ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100' : '',
+        isCurrentRoute.value(toUrl(url)) ? 'text-neutral-900' : '',
 );
 
 const mainNavItems: NavItem[] = [
@@ -72,7 +72,7 @@ const rightNavItems: NavItem[] = [
                         <SheetContent side="left" class="w-[300px] p-6">
                             <SheetTitle class="sr-only">Navigation Menu</SheetTitle>
                             <SheetHeader class="flex justify-start text-left">
-                                <AppLogoIcon class="size-6 fill-current text-black dark:text-white" />
+                                <AppLogoIcon class="size-6 fill-current text-black" />
                             </SheetHeader>
                             <div class="flex h-full flex-1 flex-col justify-between space-y-4 py-6">
                                 <nav class="-mx-3 space-y-1">
@@ -123,7 +123,7 @@ const rightNavItems: NavItem[] = [
                                 </Link>
                                 <div
                                     v-if="isCurrentRoute(item.href)"
-                                    class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
+                                    class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black"
                                 ></div>
                             </NavigationMenuItem>
                         </NavigationMenuList>
@@ -166,7 +166,7 @@ const rightNavItems: NavItem[] = [
                             >
                                 <Avatar class="size-8 overflow-hidden rounded-full">
                                     <AvatarImage v-if="auth.user.avatar" :src="auth.user.avatar" :alt="auth.user.name" />
-                                    <AvatarFallback class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white">
+                                    <AvatarFallback class="rounded-lg bg-neutral-200 font-semibold text-black">
                                         {{ getInitials(auth.user?.name) }}
                                     </AvatarFallback>
                                 </Avatar>
