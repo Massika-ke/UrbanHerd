@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('animal_shares', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('animal_id')->constrained()->onDelete('cascade');
+            $table->integer('total_shares');
+            $table->integer('available_shares');
+            $table->decimal('price_per_share', 10, 2);
+            $table->decimal('minimum_investment', 10, 2);
+            $table->boolean('is_available')->default(true);
+            $table->timestamp('listing_date');
+            $table->timestamp('last_price_update');
             $table->timestamps();
         });
     }
